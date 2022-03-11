@@ -31,7 +31,7 @@
               />
             </div>
             <h3 class="mt-6 text-sm text-gray-500">
-              <a :href="callout.href">
+              <a v-on:click="store.commit('setNewType', callout.type)" :href="callout.href">
                 <span class="absolute inset-0" />
                 {{ callout.name }}
               </a>
@@ -53,6 +53,7 @@
 const callouts = [
   {
     name: "Jerseys",
+    type: 'jersey',
     description: "Official jerseys",
     imageSrc: "https://picsum.photos/id/535/600/600",
     imageAlt:
@@ -61,6 +62,7 @@ const callouts = [
   },
   {
     name: "Apparel",
+    type: 'apparel',
     description: "All other apparel",
     imageSrc: "https://picsum.photos/id/1059/600/600",
     imageAlt:
@@ -69,6 +71,7 @@ const callouts = [
   },
   {
     name: "Accesories",
+    type: 'accesory',
     description: "Amazing accesories",
     imageSrc: "https://picsum.photos/id/157/600/600",
     imageAlt: "Collection of four insulated travel bottles on wooden shelf.",
