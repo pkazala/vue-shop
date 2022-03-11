@@ -1,8 +1,7 @@
 <template>
   <li>
     <a
-      :href="href"
-      :class="['block px-3 py-2 transition-colors duration-200 hover:text-stone-400']"
+      :class="['block px-3 py-2 transition-colors duration-200 hover:text-stone-400 cursor-pointer']"
     >
       <slot></slot>
     </a>

@@ -47,6 +47,9 @@
 </template>
 
 <script>
+
+//import StoreItems from "@/components/StoreItems.vue";
+
 const callouts = [
   {
     name: "Jerseys",
@@ -54,7 +57,7 @@ const callouts = [
     imageSrc: "https://picsum.photos/id/535/600/600",
     imageAlt:
       "Desk with leather desk pad, walnut desk organizer, wireless keyboard and mouse, and porcelain mug.",
-    href: "#",
+    href: "/store",
   },
   {
     name: "Apparel",
@@ -62,14 +65,14 @@ const callouts = [
     imageSrc: "https://picsum.photos/id/1059/600/600",
     imageAlt:
       "Wood table with porcelain mug, leather journal, brass pen, leather key ring, and a houseplant.",
-    href: "#",
+    href: "/store",
   },
   {
     name: "Accesories",
     description: "Amazing accesories",
     imageSrc: "https://picsum.photos/id/157/600/600",
     imageAlt: "Collection of four insulated travel bottles on wooden shelf.",
-    href: "#",
+    href: "/store",
   },
 ];
 
