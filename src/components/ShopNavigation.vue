@@ -1,0 +1,21 @@
+<template>
+  <nav
+    class="
+      relative
+      py-5
+      px-10
+      text-1
+      font-light
+      flex
+      justify-left
+      mx-auto
+      sm:max-w-xl
+      md:max-w-full
+      lg:max-w-screen-xl
+    "
+  >
+    <ul class="flex space-x-1">
+      <slot></slot>
+    </ul>
+  </nav>
+</template>
