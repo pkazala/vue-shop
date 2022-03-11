@@ -74,6 +74,7 @@ export const store = createStore({
         setNewType(state, input) {
             // mutate state
             state.ItemType = input
+            console.log(state.ItemType)
         },
         removeFromCart (state, payload) {
             let indexToDelete = state.cart.indexOf( Number(payload) );
@@ -87,7 +88,10 @@ export const store = createStore({
         }, */
         removeFromCart({ commit }, payload) {
           commit('removeFromCart', payload)
-        }
+        },
+        setNewType({ commit }, input) {
+            commit('removeFromCart', input)
+          }
       },
     getters: {
         product: (state) => (id) => {

@@ -31,10 +31,10 @@
               />
             </div>
             <h3 class="mt-6 text-sm text-gray-500">
-              <a v-on:click="store.commit('setNewType', callout.type)" :href="callout.href">
+              <router-link v-on:click="$store.state.ItemType = 'jersey'" :to="callout.href">
                 <span class="absolute inset-0" />
                 {{ callout.name }}
-              </a>
+              </router-link>
             </h3>
             <p class="text-base font-semibold text-gray-900">
               {{ callout.description }}
