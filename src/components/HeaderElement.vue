@@ -18,7 +18,7 @@
           </p>
         </div>
         <div class="flex items-center ml-2">
-          <a href="/store" aria-label="" class="inline-flex items-center font-semibold text-amber-500 transition-colors duration-200 hover:text-amber-700">Shop now</a>
+          <router-link to="/store" aria-label="" class="inline-flex items-center font-semibold text-amber-500 transition-colors duration-200 hover:text-amber-700">Shop now</router-link>
         </div>
       </div>
       <div class="relative bg-[url('./assets/shopping.svg')] bg-contain bg-no-repeat bg-center">

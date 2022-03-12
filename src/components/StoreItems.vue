@@ -22,10 +22,10 @@
           xl:grid-cols-4 xl:gap-x-8
         "
       >
-        <a
+        <router-link
           v-for="product in $store.state.products"
           :key="product.id"
-          :href="'/store/' + product.id"
+          :to="'/store/' + product.id"
           class="group"
         >
           <div
@@ -55,7 +55,7 @@
           <p class="mt-1 text-lg font-medium text-gray-900">
             {{ product.price }}
           </p>
-        </a>
+        </router-link>
       </div>
       <div
         v-else
@@ -68,10 +68,10 @@
           xl:grid-cols-4 xl:gap-x-8
         "
       >
-        <a
+        <router-link
           v-for="product in productsRender"
           :key="product.id"
-          :href="product.href"
+          :to="'/store/' + product.id"
           class="group"
         >
           <div
@@ -101,7 +101,7 @@
           <p class="mt-1 text-lg font-medium text-gray-900">
             {{ product.price }}
           </p>
-        </a>
+        </router-link>
       </div>
     </div>
   </div>

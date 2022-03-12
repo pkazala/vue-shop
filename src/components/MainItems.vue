@@ -31,7 +31,10 @@
               />
             </div>
             <h3 class="mt-6 text-sm text-gray-500">
-              <router-link v-on:click="$store.state.ItemType = 'jersey'" :to="callout.href">
+              <router-link
+                v-on:click="$store.state.ItemType = callout.type"
+                :to="callout.href"
+              >
                 <span class="absolute inset-0" />
                 {{ callout.name }}
               </router-link>
@@ -47,13 +50,12 @@
 </template>
 
 <script>
-
 //import StoreItems from "@/components/StoreItems.vue";
 
 const callouts = [
   {
     name: "Jerseys",
-    type: 'jersey',
+    type: "jersey",
     description: "Official jerseys",
     imageSrc: "https://picsum.photos/id/535/600/600",
     imageAlt:
@@ -62,7 +64,7 @@ const callouts = [
   },
   {
     name: "Apparel",
-    type: 'apparel',
+    type: "apparel",
     description: "All other apparel",
     imageSrc: "https://picsum.photos/id/1059/600/600",
     imageAlt:
@@ -71,7 +73,7 @@ const callouts = [
   },
   {
     name: "Accesories",
-    type: 'accesory',
+    type: "accesory",
     description: "Amazing accesories",
     imageSrc: "https://picsum.photos/id/157/600/600",
     imageAlt: "Collection of four insulated travel bottles on wooden shelf.",
