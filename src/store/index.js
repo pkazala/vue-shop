@@ -1,9 +1,12 @@
 import { createStore } from 'vuex'
+import { vuexfireMutations, firestoreAction } from 'vuexfire'
+import { db } from '@/db.js'
 
 export const store = createStore({
     state() {
         return {
             ItemType: "all",
+            test: [],
             cart: [1, 3],
             products: [
                 {
@@ -83,6 +86,7 @@ export const store = createStore({
         addToCart(state, input) {
             state.cart.push( Number(input) )
         },
+        ...vuexfireMutations
     },
     actions: {
         addToCart({ commit }, input) {
@@ -93,7 +97,11 @@ export const store = createStore({
         },
         setNewType({ commit }, input) {
             commit('removeFromCart', input)
-        }
+        },
+        bindTest: firestoreAction(({ bindFirestoreRef }) => {
+            return bindFirestoreRef('test', db.collection('test'))
+        })
+
     },
     getters: {
         product: (state) => (id) => {

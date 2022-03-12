@@ -24,7 +24,21 @@
         <div class="m-8">
           <h3 class="text-lg font-semibold">{{ product.name }}</h3>
           <p class="text-xl mt-3 mb-7">${{ product.price }}</p>
-          <a v-on:click="addToCart" class="cursor-pointer text-white bg-amber-500 rounded-lg p-3 hover:bg-amber-600 active:bg-amber-800 transition-colors duration-200">Add to cart</a>
+          <a
+            v-on:click="addToCart"
+            class="
+              cursor-pointer
+              text-white
+              bg-amber-500
+              rounded-lg
+              p-3
+              hover:bg-amber-600
+              active:bg-amber-800
+              transition-colors
+              duration-200
+            "
+            >Add to cart</a
+          >
         </div>
       </div>
     </div>

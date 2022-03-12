@@ -26,11 +26,11 @@
             "
           >
             <router-link :to="'/store/' + item.id">
-            <img
-              :src="item.imageSrc"
-              :alt="item.imageAlt"
-              class="w-44 h-44 object-center object-cover"
-            />
+              <img
+                :src="item.imageSrc"
+                :alt="item.imageAlt"
+                class="w-44 h-44 object-center object-cover"
+              />
             </router-link>
             <div>
               <h3 class="mt-4 text-sm text-gray-700">
@@ -39,16 +39,52 @@
               <p class="mt-1 text-lg font-medium text-gray-900">
                 ${{ item.price }}
               </p>
-              <button v-on:click="removeFromCart(item.id)" class="font-light transition-colors duration-200 hover:text-stone-400">
+              <button
+                v-on:click="removeFromCart(item.id)"
+                class="
+                  font-light
+                  transition-colors
+                  duration-200
+                  hover:text-stone-400
+                "
+              >
                 Remove
               </button>
             </div>
           </div>
         </div>
       </ul>
-      <div class="w-96 grid grid-cols-2 mt-4 justify-items-center max-w-2xl mx-auto py-16 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
-        <div class="font-bold text-xl mt-2"> Total: ${{ totalPrice }}</div>
-        <router-link :to="'checkout'" class="bg-amber-500 hover:bg-amber-600 active:bg-amber-800 p-2 px-6 font-medium text-white rounded-lg transition-colors duration-200">Checkout</router-link>
+      <div
+        class="
+          w-96
+          grid grid-cols-2
+          mt-4
+          justify-items-center
+          max-w-2xl
+          mx-auto
+          py-16
+          px-4
+          sm:py-4 sm:px-6
+          lg:max-w-7xl lg:px-8
+        "
+      >
+        <div class="font-bold text-xl mt-2">Total: ${{ totalPrice }}</div>
+        <router-link
+          :to="'checkout'"
+          class="
+            bg-amber-500
+            hover:bg-amber-600
+            active:bg-amber-800
+            p-2
+            px-6
+            font-medium
+            text-white
+            rounded-lg
+            transition-colors
+            duration-200
+          "
+          >Checkout</router-link
+        >
       </div>
     </div>
   </div>
@@ -63,12 +99,12 @@ export default {
     cartItems() {
       return this.$store.getters.cartItems;
     },
-    totalPrice () {
+    totalPrice() {
       let total = 0;
-      this.cartItems.forEach(element => {
-        total += element.price
+      this.cartItems.forEach((element) => {
+        total += element.price;
       });
-      return total
+      return total;
     },
   },
   methods: {

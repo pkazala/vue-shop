@@ -1,8 +1,14 @@
 <template>
   <ShopNavigation>
-    <StoreNavItem v-on:click="$store.state.ItemType = 'jersey'">Jerseys</StoreNavItem>
-    <StoreNavItem v-on:click="$store.state.ItemType = 'apparel'">Apparel</StoreNavItem>
-    <StoreNavItem v-on:click="$store.state.ItemType = 'accesory'">Accesories</StoreNavItem>
+    <StoreNavItem v-on:click="$store.state.ItemType = 'jersey'"
+      >Jerseys</StoreNavItem
+    >
+    <StoreNavItem v-on:click="$store.state.ItemType = 'apparel'"
+      >Apparel</StoreNavItem
+    >
+    <StoreNavItem v-on:click="$store.state.ItemType = 'accesory'"
+      >Accesories</StoreNavItem
+    >
     <StoreNavItem v-on:click="$store.state.ItemType = 'all'">All</StoreNavItem>
   </ShopNavigation>
   <div :key="componentKey" class="bg-white">
@@ -127,7 +133,9 @@ export default {
   },
   computed: {
     productsRender: function () {
-      return this.$store.state.products.filter((product) => product.type === this.$store.state.ItemType);
+      return this.$store.state.products.filter(
+        (product) => product.type === this.$store.state.ItemType
+      );
     },
   },
 };

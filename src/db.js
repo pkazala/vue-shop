@@ -1,7 +1,6 @@
-import firebase from 'firebase/app'
-import 'firebase/firestore'
+import { initializeApp } from 'firebase/app';
 
-const firebaseApp = firebase.initializeApp({
+const firebaseConfig = {
     apiKey: "AIzaSyBsq_iL98bXkLj_1z7nza-mb3t66dnlFUM",
     authDomain: "vue-shop-78347.firebaseapp.com",
     projectId: "vue-shop-78347",
@@ -9,8 +8,8 @@ const firebaseApp = firebase.initializeApp({
     messagingSenderId: "932696587137",
     appId: "1:932696587137:web:3043c4289fde0c86e18680",
     measurementId: "G-VGRRKS5F7N"
-});
-
-const db = firebaseApp.firestore();
+  };
+  
+  const db = initializeApp(firebaseConfig);
 
 export { db };
