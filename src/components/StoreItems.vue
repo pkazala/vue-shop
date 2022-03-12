@@ -53,7 +53,7 @@
             {{ product.name }}
           </h3>
           <p class="mt-1 text-lg font-medium text-gray-900">
-            {{ product.price }}
+            ${{ product.price }}
           </p>
         </router-link>
       </div>
@@ -99,7 +99,7 @@
             {{ product.name }}
           </h3>
           <p class="mt-1 text-lg font-medium text-gray-900">
-            {{ product.price }}
+            ${{ product.price }}
           </p>
         </router-link>
       </div>

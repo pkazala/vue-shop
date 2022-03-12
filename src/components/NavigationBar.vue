@@ -18,8 +18,9 @@
       <slot></slot>
     </ul>
     <router-link :to="'/cart'">
+    <div v-if="this.$store.state.cart.length > 0" class="absolute right-12 w-8 top-8 text-amber-700"> {{ this.$store.state.cart.length }}</div>
       <svg
-        class="absolute right-10 w-8 mt-1"
+        class="absolute right-10 w-8 top-6"
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"
         fill="none"

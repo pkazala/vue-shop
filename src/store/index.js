@@ -10,7 +10,7 @@ export const store = createStore({
                     id: 1,
                     name: "Earthen Bottle",
                     type: "jersey",
-                    price: "$48",
+                    price: 48,
                     imageSrc:
                         "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
                     imageAlt:
@@ -20,7 +20,7 @@ export const store = createStore({
                     id: 2,
                     name: "Nomad Tumbler",
                     type: "apparel",
-                    price: "$35",
+                    price: 35,
                     imageSrc:
                         "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
                     imageAlt:
@@ -30,7 +30,7 @@ export const store = createStore({
                     id: 3,
                     name: "Focus Paper Refill",
                     type: "jersey",
-                    price: "$89",
+                    price: 89,
                     imageSrc:
                         "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
                     imageAlt:
@@ -40,7 +40,7 @@ export const store = createStore({
                     id: 4,
                     name: "Machined Mechanical Pencil",
                     type: "accesory",
-                    price: "$35",
+                    price: 35,
                     imageSrc:
                         "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
                     imageAlt:
@@ -50,7 +50,7 @@ export const store = createStore({
                     id: 5,
                     name: "Bottle",
                     type: "jersey",
-                    price: "$48",
+                    price: 44,
                     imageSrc:
                         "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
                     imageAlt:
@@ -60,9 +60,9 @@ export const store = createStore({
                     id: 6,
                     name: "Pencil",
                     type: "accesory",
-                    price: "$35",
+                    price: 34,
                     imageSrc:
-                        "https://picsum.photos/id/821/500/400",
+                        "https://picsum.photos/id/821/600/600",
                     imageAlt:
                         "Hand holding black machined steel mechanical pencil with brass tip and top.",
                 },
@@ -76,27 +76,29 @@ export const store = createStore({
             state.ItemType = input
             console.log(state.ItemType)
         },
-        removeFromCart (state, payload) {
-            let indexToDelete = state.cart.indexOf( Number(payload) );
+        removeFromCart(state, payload) {
+            let indexToDelete = state.cart.indexOf(Number(payload));
             state.cart.splice(indexToDelete, 1)
-          },
+        },
+        addToCart(state, input) {
+            state.cart.push( Number(input) )
+        },
     },
     actions: {
-        /* addToCart({ commit }, payload) {
-          commit('addToCart', payload),
-          commit('decrementProductInventory', payload)
-        }, */
+        addToCart({ commit }, input) {
+          commit('addToCart', input)
+        },
         removeFromCart({ commit }, payload) {
-          commit('removeFromCart', payload)
+            commit('removeFromCart', payload)
         },
         setNewType({ commit }, input) {
             commit('removeFromCart', input)
-          }
-      },
+        }
+    },
     getters: {
         product: (state) => (id) => {
             return state.products.filter(p => p.id === Number(id))[0]
-          },
+        },
         cartItems: (state) => {
             return state.cart.map(
                 itemId => state.products.find(
