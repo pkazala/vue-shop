@@ -1,5 +1,7 @@
 # vue-shop
 
+Web Store application built using Vue and Express and Firebase
+
 ## Project setup
 ```
 npm install
