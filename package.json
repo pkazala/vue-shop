@@ -9,9 +9,13 @@
   },
   "dependencies": {
     "@tailwindcss/aspect-ratio": "^0.4.0",
+    "@vue-stripe/vue-stripe": "^4.4.2",
+    "axios": "^0.26.1",
     "core-js": "^3.8.3",
     "firebase": "^9.6.8-20222320822",
+    "stripe": "^8.209.0",
     "vue": "^3.2.13",
+    "vue-axios": "^3.4.1",
     "vue-router": "^4.0.13",
     "vuefire": "^2.2.5",
     "vuex": "^4.0.2",

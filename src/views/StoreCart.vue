@@ -69,22 +69,28 @@
         "
       >
         <div class="font-bold text-xl mt-2">Total: ${{ totalPrice }}</div>
-        <router-link
-          :to="'checkout'"
-          class="
-            bg-amber-500
-            hover:bg-amber-600
-            active:bg-amber-800
-            p-2
-            px-6
-            font-medium
-            text-white
-            rounded-lg
-            transition-colors
-            duration-200
-          "
-          >Checkout</router-link
+        <form
+          action="http://localhost:5000/create-checkout-session"
+          method="POST"
         >
+          <button
+            v-on:click="changeAmount()"
+            class="
+              bg-amber-500
+              hover:bg-amber-600
+              active:bg-amber-800
+              p-2
+              px-6
+              font-medium
+              text-white
+              rounded-lg
+              transition-colors
+              duration-200
+            "
+          >
+            Checkout
+          </button>
+        </form>
       </div>
     </div>
   </div>
@@ -99,6 +105,13 @@ export default {
     cartItems() {
       return this.$store.getters.cartItems;
     },
+    cartItemsId() {
+      let allId = [];
+      this.cartItems.forEach((item) => {
+        allId.push(item.id);
+      });
+      return allId;
+    },
     totalPrice() {
       let total = 0;
       this.cartItems.forEach((element) => {
@@ -110,6 +123,15 @@ export default {
   methods: {
     removeFromCart(itemId) {
       this.$store.dispatch("removeFromCart", itemId);
+    },
+    changeAmount() {
+      const path = "http://localhost:5000/getData";
+      this.axios
+        .post(path, { total: this.totalPrice, items: this.cartItemsId, status: 'ongoing' })
+        .catch((error) => {
+          console.log(error);
+        });
+      this.$router.push("/checkout");
     },
   },
 };
