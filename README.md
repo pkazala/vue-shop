@@ -1,6 +1,6 @@
 # vue-shop
 
-Web Store application built using Vue and Express and Firebase
+Web Store application built using Vue, Tailwind, Express and Firebase
 
 ## Project setup
 ```
