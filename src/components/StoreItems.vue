@@ -117,6 +117,7 @@
 import ShopNavigation from "@/components/ShopNavigation.vue";
 import StoreNavItem from "@/components/StoreNavItem.vue";
 
+
 export default {
   setup() {
     return {};
