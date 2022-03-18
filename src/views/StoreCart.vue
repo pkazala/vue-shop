@@ -9,47 +9,52 @@
         v-for="item in cartItems"
         :key="item.id"
       >
-        <div>
-          <div
-            class="
-              bg-stone-100
-              rounded-lg
-              px-8
-              m-4
-              h-80
-              w-max
-              sm:h-56
-              grid grid-cols-1
-              sm:grid-cols-2
-              gap-4
-              content-center
-            "
-          >
-            <router-link :to="'/store/' + item.id">
-              <img
-                :src="item.imageSrc"
-                :alt="item.imageAlt"
-                class="w-44 h-44 object-center object-cover"
-              />
-            </router-link>
-            <div>
-              <h3 class="mt-4 text-sm text-gray-700">
-                {{ item.name }}
-              </h3>
-              <p class="mt-1 text-lg font-medium text-gray-900">
-                ${{ item.price }}
-              </p>
-              <button
-                v-on:click="removeFromCart(item.id)"
-                class="
-                  font-light
-                  transition-colors
-                  duration-200
-                  hover:text-stone-400
-                "
-              >
-                Remove
-              </button>
+        <div v-if="item">
+          <div>
+            <div
+              class="
+                bg-stone-100
+                rounded-lg
+                px-8
+                m-4
+                h-80
+                w-max
+                sm:h-56
+                grid grid-cols-1
+                sm:grid-cols-2
+                gap-4
+                content-center
+              "
+            >
+              <router-link :to="'/store/' + item.id">
+                <img
+                  :src="item.imageSrc"
+                  :alt="item.imageAlt"
+                  class="w-44 h-44 object-center object-cover"
+                />
+              </router-link>
+              <div>
+                <h3 class="mt-4 text-sm text-gray-700">
+                  {{ item.name }}
+                </h3>
+                <p class="mt-1 text-lg font-medium text-gray-900">
+                  {{ item.curSize }}
+                </p>
+                <p class="mt-1 text-lg font-medium text-gray-900">
+                  ${{ item.price }}
+                </p>
+                <button
+                  v-on:click="removeFromCart(item.id)"
+                  class="
+                    font-light
+                    transition-colors
+                    duration-200
+                    hover:text-stone-400
+                  "
+                >
+                  Remove
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -127,7 +132,11 @@ export default {
     changeAmount() {
       const path = "http://localhost:5000/getData";
       this.axios
-        .post(path, { total: this.totalPrice, items: this.cartItemsId, status: 'ongoing' })
+        .post(path, {
+          total: this.totalPrice,
+          items: this.cartItemsId,
+          status: "ongoing",
+        })
         .catch((error) => {
           console.log(error);
         });
