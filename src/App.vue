@@ -20,5 +20,8 @@ export default {
     NavigationBar,
     NavItem,
   },
+  mounted() {
+    this.$store.dispatch('getProducts');
+  }
 };
 </script>

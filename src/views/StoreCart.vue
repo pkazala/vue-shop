@@ -6,8 +6,8 @@
     >
       <ul
         class="grid grid-cols-1 justify-items-center"
-        v-for="item in cartItems"
-        :key="item.id"
+        v-for="item in this.$store.state.cart"
+        :key="item.product.id"
       >
         <div v-if="item">
           <div>
@@ -17,7 +17,7 @@
                 rounded-lg
                 px-8
                 m-4
-                h-80
+                h-96
                 w-max
                 sm:h-56
                 grid grid-cols-1
@@ -26,34 +26,44 @@
                 content-center
               "
             >
-              <router-link :to="'/store/' + item.id">
+              <router-link :to="'/store/' + item.product.id">
                 <img
-                  :src="item.imageSrc"
-                  :alt="item.imageAlt"
+                  :src="item.product.imageSrc"
+                  :alt="item.product.imageAlt"
                   class="w-44 h-44 object-center object-cover"
                 />
               </router-link>
-              <div>
-                <h3 class="mt-4 text-sm text-gray-700">
-                  {{ item.name }}
-                </h3>
-                <p class="mt-1 text-lg font-medium text-gray-900">
-                  {{ item.curSize }}
-                </p>
-                <p class="mt-1 text-lg font-medium text-gray-900">
-                  ${{ item.price }}
-                </p>
-                <button
-                  v-on:click="removeFromCart(item.id)"
-                  class="
-                    font-light
-                    transition-colors
-                    duration-200
-                    hover:text-stone-400
-                  "
-                >
-                  Remove
-                </button>
+              <div class="grid grid-cols-2">
+                <div class="ml-3">
+                  <h3 class="mt-4 text-sm text-gray-700">
+                    {{ item.product.name }}
+                  </h3>
+                  <p class="mt-1 text-lg font-medium text-gray-900">
+                    {{ item.curSize }}
+                  </p>
+                  <p class="mt-1 text-lg font-medium text-gray-900">
+                    ${{ item.product.price * item.quantity }}
+                  </p>
+                  <button
+                    v-on:click="removeFromCart(item.id)"
+                    class="
+                      font-light
+                      transition-colors
+                      duration-200
+                      hover:text-stone-400
+                    "
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div class="ml-8 mt-8">
+                  <div class="bg-stone-300 w-10 h-22 grid grid-cols-1 place-items-center content-center opacity-80">
+                    <button v-on:click="item.quantity += 1" class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">+</button>
+                    <p class="font-medium text-sm text-gray-900"> {{ item.quantity }}</p>
+                    <button v-if="item.quantity > 1" v-on:click="item.quantity -= 1" class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">-</button>
+                    <button v-else class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">-</button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -107,20 +117,19 @@ export default {
     return {};
   },
   computed: {
-    cartItems() {
-      return this.$store.getters.cartItems;
-    },
     cartItemsId() {
       let allId = [];
-      this.cartItems.forEach((item) => {
-        allId.push(item.id);
+      this.$store.state.cart.forEach((item) => {
+        allId.push(item.product.id);
+        allId.push(item.quantity);
+        allId.push(item.curSize);
       });
       return allId;
     },
     totalPrice() {
       let total = 0;
-      this.cartItems.forEach((element) => {
-        total += element.price;
+      this.$store.state.cart.forEach((element) => {
+        total += (element.product.price * element.quantity);
       });
       return total;
     },
