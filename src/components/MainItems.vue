@@ -50,7 +50,6 @@
 </template>
 
 <script>
-//import StoreItems from "@/components/StoreItems.vue";
 
 const callouts = [
   {

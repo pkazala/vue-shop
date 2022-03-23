@@ -45,7 +45,7 @@
                     ${{ item.product.price * item.quantity }}
                   </p>
                   <button
-                    v-on:click="removeFromCart(item.id)"
+                    v-on:click="removeFromCart(item.product.id)"
                     class="
                       font-light
                       transition-colors

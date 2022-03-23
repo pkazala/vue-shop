@@ -43,7 +43,7 @@ export const store = createStore({
                 .then(response => {
                     commit('getProducts', response.data)
                 })
-        }
+        },
 
     },
     getters: {

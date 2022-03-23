@@ -3,7 +3,7 @@
     <NavigationBar>
       <NavItem href="/">Home</NavItem>
       <NavItem href="/store">Shop</NavItem>
-      <NavItem href="/auth">Log in</NavItem>
+      <NavItem href="/auth">Sign in</NavItem>
     </NavigationBar>
   </div>
   <hr class="solid">

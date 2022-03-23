@@ -11,8 +11,7 @@
           m-10
           h-[32rem]
           grid grid-cols-1
-          lg:h-96
-          lg:grid-cols-2
+          lg:h-96 lg:grid-cols-2
           gap-4
           content-center
         "
@@ -20,12 +19,21 @@
         <img
           :src="product.imageSrc"
           :alt="product.imageAlt"
-          class="lg:w-[500px] lg:h-[500px] w-[400px] h-[400px] object-center object-cover"
+          class="
+            lg:w-[500px] lg:h-[500px]
+            w-[400px]
+            h-[400px]
+            object-center object-cover
+          "
         />
         <div class="m-8">
           <h3 class="text-lg font-semibold">{{ product.name }}</h3>
           <p class="text-xl mt-3 mb-7">${{ product.price }}</p>
-          <Menu v-if="product.size.length > 0" as="div" class="relative inline-block text-left mr-4">
+          <Menu
+            v-if="product.size.length > 0"
+            as="div"
+            class="relative inline-block text-left mr-4"
+          >
             <div>
               <MenuButton
                 class="
@@ -95,7 +103,9 @@
           </Menu>
           <a
             v-if="product.size.length > 0"
-            v-bind:class="current != 'Size' ? '':'pointer-events-none opacity-50'"
+            v-bind:class="
+              current != 'Size' ? '' : 'pointer-events-none opacity-50'
+            "
             v-on:click="addToCart()"
             class="
               cursor-pointer
@@ -157,7 +167,11 @@ export default {
   },
   methods: {
     addToCart() {
-      this.$store.dispatch("addToCart", {product: this.product, size: this.current, quantity: 1});
+      this.$store.dispatch("addToCart", {
+        product: this.product,
+        size: this.current,
+        quantity: 1,
+      });
     },
     getSize(value) {
       console.log(value);
