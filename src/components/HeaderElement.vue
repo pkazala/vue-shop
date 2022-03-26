@@ -47,7 +47,7 @@
           >
             Official e-sports apparel<br class="hidden md:block" />
             from all the teams
-            <span class="inline-block text-amber-500">you love</span>
+            <span class="inline-block text-amber-500 animate-pulse">you love</span>
           </h2>
           <p class="text-base text-gray-700 md:text-lg">
             Check out all of our new arrivals for the 2022 season and pick the

@@ -13,8 +13,8 @@
   >
     <div class="max-w-md w-full space-y-8">
       <div class="grid grid-cols-1 justify-items-center">
-        <h1 class="text-3xl text-gray-900">Sign In to your account</h1>
-        <form v-on:submit.prevent="loginUser()" class="mt-8 space-y-6 w-96">
+        <h1 class="text-3xl text-gray-900">Create a new account</h1>
+        <form v-on:submit.prevent="registerUser()" class="mt-8 space-y-6 w-96">
           <input type="hidden" name="remember" value="true" />
           <div class="rounded-md shadow-sm -space-y-px">
             <div>
@@ -79,7 +79,7 @@
               />
             </div>
           </div>
-          <div>
+          <div class="text-center">
             <button
               type="submit"
               class="
@@ -107,32 +107,16 @@
             >
               <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               </span>
-              Sign in
+              Sign up
             </button>
+            <p
+              v-if="this.responseText != ''"
+              class="mt-2 text-xl font-light text-red-600"
+            >
+              {{ this.responseText }}
+            </p>
           </div>
         </form>
-        <div class="grid grid-cols-1 justify-items-center">
-          <p class="mt-2">Or create a new account</p>
-          <router-link
-            to="/register"
-            class="
-              text-center
-              mt-2
-              py-1
-              px-8
-              text-sm
-              bg-slate-200
-              rounded-md
-              transition-colors
-              duration-100
-              hover:bg-black hover:text-white
-              mx-5
-            "
-          >
-            Sign up
-          </router-link>
-          <p v-if='this.responseText != ""' class="mt-2 text-xl font-light text-red-600">{{ this.responseText }}</p>
-        </div>
       </div>
     </div>
   </div>
@@ -145,31 +129,25 @@ export default {
       username: "",
       password: "",
       responseText: "",
-      show: false
     };
   },
   methods: {
-    setUsername(username) {
-      this.$store.dispatch("setUsername", username);
-    },
-    loginUser() {
-      const path = "http://localhost:5000/login";
+    registerUser() {
       this.axios
-        .post(path, {
+        .post("http://localhost:5000/register", {
           username: this.username,
           password: this.password,
         })
         .then((response) => {
-          this.$store.dispatch("getJWT", response.data)
-          console.log(response)
-          this.$router.push("/")
+          console.log(response);
+          this.$router.push("/success");
         })
         .catch((error) => {
-          this.responseText = "Wrong username or password"
-          console.log(error)
+          this.responseText = "E-mail already taken";
+          console.log(error);
         });
       this.username = "";
-      this.password = ""
+      this.password = "";
     },
   },
 };

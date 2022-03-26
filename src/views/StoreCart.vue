@@ -45,7 +45,7 @@
                     ${{ item.product.price * item.quantity }}
                   </p>
                   <button
-                    v-on:click="removeFromCart(item.id)"
+                    v-on:click="removeFromCart(item.product.id)"
                     class="
                       font-light
                       transition-colors
@@ -57,11 +57,57 @@
                   </button>
                 </div>
                 <div class="ml-8 mt-8">
-                  <div class="bg-stone-300 w-10 h-22 grid grid-cols-1 place-items-center content-center opacity-80">
-                    <button v-on:click="item.quantity += 1" class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">+</button>
-                    <p class="font-medium text-sm text-gray-900"> {{ item.quantity }}</p>
-                    <button v-if="item.quantity > 1" v-on:click="item.quantity -= 1" class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">-</button>
-                    <button v-else class="w-full text-2xl text-gray-500 hover:bg-stone-400 transition-colors duration-100">-</button>
+                  <div
+                    class="
+                      bg-stone-300
+                      w-10
+                      h-22
+                      grid grid-cols-1
+                      place-items-center
+                      content-center
+                      opacity-80
+                    "
+                  >
+                    <button
+                      v-on:click="item.quantity += 1"
+                      class="
+                        w-full
+                        text-2xl text-gray-500
+                        hover:bg-stone-400
+                        transition-colors
+                        duration-100
+                      "
+                    >
+                      +
+                    </button>
+                    <p class="font-medium text-sm text-gray-900">
+                      {{ item.quantity }}
+                    </p>
+                    <button
+                      v-if="item.quantity > 1"
+                      v-on:click="item.quantity -= 1"
+                      class="
+                        w-full
+                        text-2xl text-gray-500
+                        hover:bg-stone-400
+                        transition-colors
+                        duration-100
+                      "
+                    >
+                      -
+                    </button>
+                    <button
+                      v-else
+                      class="
+                        w-full
+                        text-2xl text-gray-500
+                        hover:bg-stone-400
+                        transition-colors
+                        duration-100
+                      "
+                    >
+                      -
+                    </button>
                   </div>
                 </div>
               </div>
@@ -89,6 +135,26 @@
           method="POST"
         >
           <button
+            v-if="this.$store.state.cart.length === 0"
+            v-bind:class="'pointer-events-none opacity-50'"
+            v-on:click="changeAmount()"
+            class="
+              bg-amber-500
+              hover:bg-amber-600
+              active:bg-amber-800
+              p-2
+              px-6
+              font-medium
+              text-white
+              rounded-lg
+              transition-colors
+              duration-200
+            "
+          >
+            Checkout
+          </button>
+          <button
+            v-else
             v-on:click="changeAmount()"
             class="
               bg-amber-500
@@ -112,6 +178,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
 export default {
   setup() {
     return {};
@@ -129,7 +196,7 @@ export default {
     totalPrice() {
       let total = 0;
       this.$store.state.cart.forEach((element) => {
-        total += (element.product.price * element.quantity);
+        total += element.product.price * element.quantity;
       });
       return total;
     },
@@ -149,7 +216,13 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-      this.$router.push("/checkout");
+      if (this.$store.state.jwt === '') {
+        this.$router.push("/auth");
+        swal("Oops!", "You need to sign in to complete the transaction")
+      } else {
+        //this.$router.push("/checkout");
+        this.axios.post("http://localhost:5000/create-checkout-session")
+      }
     },
   },
 };

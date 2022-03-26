@@ -15,8 +15,10 @@
     "
   >
     <ul class="flex space-x-3">
+      <img v-on:click="this.$router.push('/')" src="../assets/logonew.svg" class="h-10 cursor-pointer">
       <slot></slot>
     </ul>
+    <p v-if="this.$store.state.username != ''" class="ml-4 mt-2 font-light">Signed in as: {{ this.$store.state.username }}</p>
     <router-link :to="'/cart'">
       <div
         v-if="this.$store.state.cart.length > 0"
