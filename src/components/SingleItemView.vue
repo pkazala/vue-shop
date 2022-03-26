@@ -85,16 +85,13 @@
                 <div
                   v-for="size in product.size"
                   v-bind:key="size.key"
-                  class="py-1"
+                  v-on:click="current = size"
+                  class="py-1 hover:bg-gray-100 cursor-pointer outline outline-1 outline-slate-100"
                 >
-                  <MenuItem v-slot="{ active }">
-                    <a
-                      v-on:click="current = size"
-                      :class="[
-                        active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                        'block px-4 py-2 text-sm',
-                      ]"
-                      >{{ size }}</a
+                  <MenuItem>
+                    <p
+                      class="ml-4 font-thin"
+                      >{{ size }}</p
                     >
                   </MenuItem>
                 </div>
@@ -144,7 +141,6 @@
 </template>
 
 <script>
-//import Menu from "@/components/DropdownMenu.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 export default {
@@ -153,7 +149,6 @@ export default {
   }, */
   data() {
     return {
-      //product: this.$store.getters.product(this.$route.params.id),
       current: "Size",
       product: this.$store.getters.product(this.$route.params.id),
     };
