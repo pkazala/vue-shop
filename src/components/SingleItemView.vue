@@ -1,5 +1,5 @@
 <template>
-  <div class="divide-y divide-slate-10 w-screen">
+  <div v-if="product" class="divide-y divide-slate-10 w-screen">
     <div
       class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8"
     >
@@ -86,13 +86,15 @@
                   v-for="size in product.size"
                   v-bind:key="size.key"
                   v-on:click="current = size"
-                  class="py-1 hover:bg-gray-100 cursor-pointer outline outline-1 outline-slate-100"
+                  class="
+                    py-1
+                    hover:bg-gray-100
+                    cursor-pointer
+                    outline outline-1 outline-slate-100
+                  "
                 >
                   <MenuItem>
-                    <p
-                      class="ml-4 font-thin"
-                      >{{ size }}</p
-                    >
+                    <p class="ml-4 font-thin">{{ size }}</p>
                   </MenuItem>
                 </div>
               </MenuItems>
@@ -144,13 +146,9 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 import { ChevronDownIcon } from "@heroicons/vue/solid";
 export default {
-  /*   components: {
-    Menu,
-  }, */
   data() {
     return {
       current: "Size",
-      product: this.$store.getters.product(this.$route.params.id),
     };
   },
   components: {
@@ -159,6 +157,11 @@ export default {
     MenuItem,
     MenuItems,
     ChevronDownIcon,
+  },
+  computed: {
+    product: function () {
+      return this.$store.getters.product(this.$route.params.id);
+    },
   },
   methods: {
     addToCart() {

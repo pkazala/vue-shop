@@ -45,7 +45,7 @@
                     ${{ item.product.price * item.quantity }}
                   </p>
                   <button
-                    v-on:click="removeFromCart(item.product.id)"
+                    v-on:click="removeFromCart(item)"
                     class="
                       font-light
                       transition-colors
@@ -220,8 +220,7 @@ export default {
         this.$router.push("/auth");
         swal("Oops!", "You need to sign in to complete the transaction")
       } else {
-        //this.$router.push("/checkout");
-        this.axios.post("http://localhost:5000/create-checkout-session")
+        this.$router.push("/checkout");
       }
     },
   },

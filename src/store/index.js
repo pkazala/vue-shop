@@ -11,7 +11,20 @@ export const store = createStore({
             ItemType: "all",
             cart: [],
             products: [],
-            productsDB: []
+            productsDB: [],
+            discount: '',
+            disc_codes: [{
+                name: "DISC10",
+                value: .9
+            },
+            {
+                name: "DISC20",
+                value: .8
+            },
+            {
+                name: "TURBODISC50",
+                value: .5
+            }]
         }
     },
     mutations: {
@@ -21,7 +34,7 @@ export const store = createStore({
             console.log(state.ItemType)
         },
         removeFromCart(state, payload) {
-            let indexToDelete = state.cart.indexOf(Number(payload));
+            let indexToDelete = state.cart.indexOf(payload);
             state.cart.splice(indexToDelete, 1)
             var cart = localStorage.getItem('cart')
             var cartParsed = JSON.parse(cart)
@@ -42,11 +55,11 @@ export const store = createStore({
         },
         setUsername(state, input) {
             console.log(input)
-            try{
-            state.username = jwt_decode(input.access_token).sub
-            console.log(state.username)
+            try {
+                state.username = jwt_decode(input.access_token).sub
+                console.log(state.username)
             }
-            catch(error){
+            catch (error) {
                 console.log(error)
             }
         },
@@ -76,6 +89,7 @@ export const store = createStore({
             axios.get('http://127.0.0.1:5000/getProducts')
                 .then(response => {
                     commit('getProducts', response.data)
+                    commit('loadJWT')
                 })
         },
         getJWT({ commit }, input) {
