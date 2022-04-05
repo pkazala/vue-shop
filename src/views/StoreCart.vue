@@ -45,7 +45,7 @@
                     ${{ item.product.price * item.quantity }}
                   </p>
                   <button
-                    v-on:click="removeFromCart(item.product.id)"
+                    v-on:click="removeFromCart(item)"
                     class="
                       font-light
                       transition-colors
@@ -129,11 +129,7 @@
           lg:max-w-7xl lg:px-8
         "
       >
-        <div class="font-bold text-xl mt-2">Total: ${{ totalPrice }}</div>
-        <form
-          action="http://localhost:5000/create-checkout-session"
-          method="POST"
-        >
+        <div class="font-bold text-xl mt-2">Total: ${{ totalPrice }}</div>  
           <button
             v-if="this.$store.state.cart.length === 0"
             v-bind:class="'pointer-events-none opacity-50'"
@@ -171,7 +167,6 @@
           >
             Checkout
           </button>
-        </form>
       </div>
     </div>
   </div>
@@ -206,7 +201,7 @@ export default {
       this.$store.dispatch("removeFromCart", itemId);
     },
     changeAmount() {
-      const path = "http://localhost:5000/getData";
+      const path = "https://flask-server-app.herokuapp.com/getData";
       this.axios
         .post(path, {
           total: this.totalPrice,
@@ -220,8 +215,7 @@ export default {
         this.$router.push("/auth");
         swal("Oops!", "You need to sign in to complete the transaction")
       } else {
-        //this.$router.push("/checkout");
-        this.axios.post("http://localhost:5000/create-checkout-session")
+        this.$router.push("/checkout");
       }
     },
   },

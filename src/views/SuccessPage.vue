@@ -13,8 +13,11 @@
   >
     <div class="max-w-md w-full space-y-8">
       <div class="grid grid-cols-1 justify-items-center">
-        <h1 class="mt-10 text-4xl text-green-600">Account created successfuly</h1>
-        <router-link to="/auth"
+        <h1 class="mt-8 text-4xl text-center text-green-600">
+          Transaction completed succesfully
+        </h1>
+        <router-link
+          to="/"
           class="
             mt-12
             text-center
@@ -28,7 +31,7 @@
             mx-5
           "
         >
-          Return to Sign in
+          Return to Home
         </router-link>
       </div>
     </div>
@@ -36,5 +39,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    localStorage.setItem("cart", []);
+    window.location.reload();
+  }
+};
 </script>
