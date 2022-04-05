@@ -2,7 +2,7 @@
 
 ## E-commerce application built using Vue, Tailwind, Flask, MongoDB Atlas and Stripe for processing payments.
 
-Find the server-side code in: (https://github.com/pkazala/flask-server "Flask-Server")
+Find the server-side code at: https://github.com/pkazala/flask-server
 
 ![final_gif](https://user-images.githubusercontent.com/40291469/160234408-e6301316-c180-476c-9dc3-b94937e45252.gif)
 
