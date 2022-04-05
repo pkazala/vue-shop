@@ -40,6 +40,7 @@
           </div>
         </ul>
         <div
+          v-if="this.total === 0"
           class="
             grid grid-cols-1
             sm:justify-items-end
@@ -52,7 +53,31 @@
         >
           Total: ${{ Math.round(this.totalprice) }}
         </div>
-        <div>
+        <div
+          v-else
+          class="
+            grid grid-cols-1
+            sm:justify-items-end
+            justify-items-center
+            sm:mr-56
+            mr-52
+            mt-1
+            font-bold
+          "
+        >
+          Total: ${{ Math.round(this.total) }}
+        </div>
+        <div
+          class="
+            grid grid-cols-1
+            sm:justify-items-end
+            justify-items-center
+            mr-2
+            mt-1
+            font-bold
+            text-green-400
+          "
+        >
           {{ this.savemsg }}
         </div>
       </div>
@@ -81,14 +106,20 @@
           />
           <button
             v-on:click="apply_discount()"
-            class="ml-3 hover:text-stone-600"
+            class="ml-3 p-1 rounded-md bg-slate-200 transition-colors duration-200 hover:bg-black hover:text-white"
           >
             Apply
           </button>
-          <p>{{ this.output }}</p>
+          <p
+            v-if="this.output === 'Discount code applied'"
+            class="text-green-400"
+          >
+            {{ this.output }}
+          </p>
+          <p v-else class="text-red-400">{{ this.output }}</p>
         </div>
         <form
-          action="http://localhost:5000/create-checkout-session"
+          action="https://flask-server-app.herokuapp.com/create-checkout-session"
           method="POST"
           class=""
         >
@@ -131,30 +162,39 @@ export default {
       discount: "",
       output: "",
       savemsg: "",
-      total: 10,
+      total: 0,
     };
   },
   computed: {
-      totalprice: function() {
-      let total = 0;
+    totalprice: function () {
+      let tot = 0;
       this.$store.state.cart.forEach((element) => {
-        total += element.product.price * element.quantity;
+        tot += element.product.price * element.quantity;
       });
-      return total;
+      return tot;
     },
   },
   methods: {
     apply_discount() {
       for (const code of this.$store.state.disc_codes) {
         if (code.name === this.discount) {
-          let save = this.totalprice;
+          this.total = this.totalprice;
+          let save = this.total;
           this.output = "Discount code applied";
-          this.totalprice = save * code.value;
+          this.total = this.total * code.value;
           this.savemsg =
             "You saved " +
-            Math.round(save - this.totalprice) +
+            Math.round(save - this.total) +
             "$ with discount code " +
             code.name;
+          const path = "https://flask-server-app.herokuapp.com/getData";
+          this.axios
+            .post(path, {
+              total: Math.round(this.total),
+            })
+            .catch((error) => {
+              console.log(error);
+            });
           break;
         } else {
           this.output = "Invalid discount code";

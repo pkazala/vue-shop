@@ -153,7 +153,7 @@ export default {
       this.$store.dispatch("setUsername", username);
     },
     loginUser() {
-      const path = "http://localhost:5000/login";
+      const path = "https://flask-server-app.herokuapp.com/login";
       this.axios
         .post(path, {
           username: this.username,

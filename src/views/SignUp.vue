@@ -134,7 +134,7 @@ export default {
   methods: {
     registerUser() {
       this.axios
-        .post("http://localhost:5000/register", {
+        .post("https://flask-server-app.herokuapp.com/register", {
           username: this.username,
           password: this.password,
         })

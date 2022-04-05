@@ -86,7 +86,7 @@ export const store = createStore({
             commit('removeFromCart', input)
         },
         getProducts({ commit }) {
-            axios.get('http://127.0.0.1:5000/getProducts')
+            axios.get('https://flask-server-app.herokuapp.com/getProducts')
                 .then(response => {
                     commit('getProducts', response.data)
                     commit('loadJWT')
