@@ -65,13 +65,21 @@ export const store = createStore({
         },
         loadJWT(state) {
             var token = localStorage.getItem('token')
+            if (token === null){
+                console.log("JWT is empty - User not logged in")
+            } else{
             state.jwt = token
             state.username = jwt_decode(token).sub
+            }
         },
         loadCart(state) {
             var cart = localStorage.getItem('cart')
+            if (cart === null){
+                console.log("Cart is empty")
+            } else {
             var cartParsed = JSON.parse(cart)
             state.cart = cartParsed
+            }
         },
 
     },
@@ -89,7 +97,7 @@ export const store = createStore({
             axios.get('https://flask-server-app.herokuapp.com/getProducts')
                 .then(response => {
                     commit('getProducts', response.data)
-                    commit('loadJWT')
+                    //commit('loadJWT')
                 })
         },
         getJWT({ commit }, input) {
