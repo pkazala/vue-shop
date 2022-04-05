@@ -41,7 +41,7 @@
 <script>
 export default {
   mounted() {
-    localStorage.setItem("cart", []);
+    localStorage.removeItem("cart")
     window.location.reload();
   }
 };
