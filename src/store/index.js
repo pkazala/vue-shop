@@ -67,7 +67,7 @@ export const store = createStore({
             var token = localStorage.getItem('token')
             if (token === null){
                 console.log("JWT is empty - User not logged in")
-            } else{
+            } else {
             state.jwt = token
             state.username = jwt_decode(token).sub
             }
