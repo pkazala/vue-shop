@@ -42,7 +42,6 @@
 export default {
   mounted() {
     localStorage.removeItem("cart")
-    window.location.reload();
   }
 };
 </script>
