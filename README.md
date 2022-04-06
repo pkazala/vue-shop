@@ -4,7 +4,7 @@
 
 Find the server-side code at: https://github.com/pkazala/flask-server
 
-> Features:
+### Features:
 - Landing, shop and single item pages✅
 - Incorporating Vuex for State Management and Vue Router✅
 - Fetching the data from the Mongo Atlas Database through the Flask server-side app✅
