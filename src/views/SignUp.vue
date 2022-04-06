@@ -123,6 +123,7 @@
 </template>
 
 <script>
+import swal from 'sweetalert';
 export default {
   data() {
     return {
@@ -139,8 +140,9 @@ export default {
           password: this.password,
         })
         .then((response) => {
+          swal("All done!", "Account was created!", "success");
           console.log(response);
-          this.$router.push("/success");
+          this.$router.push("/auth");
         })
         .catch((error) => {
           this.responseText = "E-mail already taken";
