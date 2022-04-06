@@ -12,6 +12,7 @@ Find the server-side code at: https://github.com/pkazala/flask-server
 - All functionality for signing up and logging in users using JWT on both the Front-End and the Back-End✅
 - Connecting Stripe for handling payments✅
 - Leaving reviews under items feature🚧
+- Functionality for creating a new password🚧
 - Admin dashboard❌
 
 
