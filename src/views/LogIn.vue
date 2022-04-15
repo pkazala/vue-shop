@@ -14,6 +14,7 @@
     <div class="max-w-md w-full space-y-8">
       <div class="grid grid-cols-1 justify-items-center">
         <h1 class="text-3xl text-gray-900">Sign In to your account</h1>
+        <h2 class="text-center mt-2">Sample credentials to use:<br> <span class="font-bold">e-mail:</span> test@test.com <span class="font-bold">password:</span> test</h2>
         <form v-on:submit.prevent="loginUser()" class="mt-8 space-y-6 w-96">
           <input type="hidden" name="remember" value="true" />
           <div class="rounded-md shadow-sm -space-y-px">
