@@ -1,5 +1,6 @@
 <template>
   <h1 class="text-center text-xl font-semibold py-3">Order summary</h1>
+  <h2 class="text-center mt-1">Valid discount codes to try: DISC10, DISC20, TURBODISC50</h2>
   <div
     class="max-w-2xl mx-auto py-16 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8"
   >
