@@ -14,8 +14,10 @@
       lg:max-w-screen-xl
     "
   >
-    <ul class="flex space-x-3">
-      <img v-on:click="this.$router.push('/')" src="../assets/logonew.svg" class="h-10 cursor-pointer">
+    <ul class="flex items-center space-x-3">
+      <router-link :to="'/'">
+      <h1 class="text-xl cursor-pointer font-logo"><span class="text-amber-500">e</span>-jerseys</h1>
+      </router-link>
       <slot></slot>
     </ul>
     <p v-if="this.$store.state.username != ''" class="ml-4 mt-2 font-light">Signed in as: {{ this.$store.state.username }}</p>
